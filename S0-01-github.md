@@ -16,7 +16,9 @@ editor_options:
 >
 > <https://docs.github.com/en/get-started/getting-started-with-git/caching-your-github-credentials-in-git>
 
-### Create a new repository on the command line
+4.  Configuración del repositorio
+
+**Create a new repository on the command line**
 
 `echo "# mapfre_r_introductory_course" >> README.md`
 
@@ -30,7 +32,7 @@ editor_options:
 
 `git push -u origin main`
 
-### Push an existing repository from the command line
+**Push an existing repository from the command line**
 
 `git remote add origin https://github.com/joseramoncajide/mapfre_r_introductory_course.git`
 
