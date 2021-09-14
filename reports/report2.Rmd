@@ -1,0 +1,31 @@
+---
+title: "Gapminder"
+author: "José Ramón Cajide"
+date: '`r format(Sys.Date(), "%B %d, %Y")`'
+output: 
+  html_document: 
+    fig_caption: yes
+    toc: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = F)
+```
+
+```{r, fig.cap='Life Exp vs GDP', fig.height=2, fig.width=4}
+library(tidyverse) 
+
+gDat <- read_csv('https://raw.githubusercontent.com/joseramoncajide/curso_introduccion_R/master/data/gapminder.csv')
+
+ggplot(gDat, aes(gdpPercap, lifeExp)) +  
+   geom_point() +  
+   scale_x_log10() +  
+   aes(col=continent) 
+
+``` 
+ 
+ 
+ 
+```{r}
+knitr::kable(head(gDat))
+```
