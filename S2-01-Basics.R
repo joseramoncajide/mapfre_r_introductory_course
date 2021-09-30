@@ -45,7 +45,7 @@ example(mean)
 
 # The most common place to get packages from is CRAN
 
-install.packages("dplyr")
+install.packages("dplyr", dependencies = TRUE)
 
 # load the package to use in the current R session
 library(dplyr)      
@@ -174,7 +174,7 @@ typeof(int_var)
 # Converting Between Integer and Double Values
 
 as.numeric(int_var)
-as.integer(dbl_var)
+dbl_var <- as.integer(dbl_var)
 
 
 # Generating Non-random Numbers
@@ -370,15 +370,15 @@ now()
 # Converting strings to dates
 x <- c("2015-07-01", "2015-08-01", "2015-09-01")
 
-as.Date(x)
+mis_fechas <- as.Date(x)
 
 y <- c("07/01/2015", "07/01/2015", "07/01/2015")
 
-as.Date(y, format = "%m/%d/%Y")
+mis_fechas_2 <- as.Date(y, format = "%m/%d/%Y")
 
 library(lubridate)
 ymd(x)
-mdy(y)
+test <- mdy(y)
 
 # Create Dates by Merging Data
 
@@ -421,7 +421,7 @@ x - y
 x <- as.Date("2012-03-1")
 y <- as.Date("2012-02-28")
 
-x - y
+foo <- as.integer(x - y)
 
 # example with time zones
 x <- as.POSIXct("2021-01-01 01:00:00", tz = "US/Eastern")
@@ -468,7 +468,7 @@ class(matrix)
 class(df)
 
 # Understanding Attributes
-attributes(df)
+foo <- attributes(df)
 attributes(matrix)
 
 names(df)
@@ -525,7 +525,7 @@ names(l1) <- c("item1", "item2", "item3")
 # Subsetting Lists
 
 l1[1]
-l1[[1]]
+l1[[1]][2]
 l1$item1
 
 # Managing Data Frames

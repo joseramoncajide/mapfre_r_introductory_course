@@ -86,7 +86,7 @@ distancias <- data.frame(cbind(distancia_real=datos_validacion$dist, distancia_e
 
 distancias
 
-summary(modelo)$sigma 
+summary(modelo)$sigma # residual standard error o ECM (Error cuadrático medio)
 
 # Comparación de muestras para ver si tienen medias diferentes
 
@@ -250,7 +250,7 @@ pred.logit
 
 modelo.4.roc.ajustado <- pROC::roc(datos_validacion$am, pred.logit)
 plot(modelo.4.roc.ajustado)
-
+modelo.4.roc.ajustado$auc
 
 # install.packages("randomForest")
 library(randomForest)
@@ -363,10 +363,14 @@ modelo_scoring.roc$auc
 # Árbol -------------------------------------------------------------------
 
 library(rpart)
+library(rpart.plot) 
 modelo_scoring.2 <- rpart(good_bad~.,data=datos_entrenamiento)
 
 plot(modelo_scoring.2)
 text(modelo_scoring.2)
+rpart.plot(modelo_scoring.2,cex = .6)
+rpart.plot(modelo_scoring.2,cex = .6, type = 5)
+rattle::fancyRpartPlot(modelo_scoring.2, caption = NULL)
 
 datos_validacion$score_rpart <- predict(modelo_scoring.2,type='vector', newdata = datos_validacion)
 
@@ -377,8 +381,9 @@ plot(modelo_scoring.2.roc)
 modelo_scoring.2.roc$auc
 
 
-install.packages("FFTrees")
+# install.packages("FFTrees")
 library("FFTrees")
+# https://econpsychbasel.shinyapps.io/shinyfftrees/
 
 datos_entrenamiento$default <- good_bad
 datos_validacion <- credit[-filas_aletorias,]
@@ -390,6 +395,7 @@ plot(modelo_scoring.3,
 
 plot(modelo_scoring.3,
      main = "German Credit Data",decision.labels = c("Good", "Bad"), tree = 7)
+
 
 
 #----------------------------------------------------------------------------
@@ -464,7 +470,13 @@ biplot(componentes_principales)
 # Análisis factorial
 #----------------------------------------------------------------------------
 
-# Una consultora de investigación de mercados ha sido contratada para realizar una acción de comunicación de una empresa del sector del mueble. No tiene muy claro cuál debe ser el enfoque porque no conoce la industria en profundidad, por lo que ha decidido realizar diversas técnicas cualitativas destacando las reuniones en grupo y el braimstorming. En varias de estas reuniones preguntaron a los asistentes que asociaran varios aspectos de los muebles con los diferentes fabricantes y cadenas reconocidos a nivel nacional e internacional.  Los resultados, en formato tabla de doble entrada, se recogen a continuación
+# Una consultora de investigación de mercados ha sido contratada para 
+# realizar una acción de comunicación de una empresa del sector del mueble. 
+# No tiene muy claro cuál debe ser el enfoque porque no conoce la industria en profundidad, 
+# por lo que ha decidido realizar diversas técnicas cualitativas destacando las 
+# reuniones en grupo y el braimstorming. En varias de estas reuniones preguntaron a los asistentes 
+# que asociaran varios aspectos de los muebles con los diferentes fabricantes y cadenas reconocidos a nivel nacional e internacional.  
+# Los resultados, en formato tabla de doble entrada, se recogen a continuación
 
 
 library(ca)

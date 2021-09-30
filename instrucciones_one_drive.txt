@@ -1,0 +1,18 @@
+# Para los más curiosos:
+help(Startup)
+ 
+# Comprobar lo siguiente
+Sys.getenv("R_LIBS")
+ 
+# Objetivo: Crear un directorio en nuestro ordenador donde poder guardar las librerías instaladas y añadirlo a un archivo .Renviron ubicado en:
+# c:\Users\$env:USERNAME\Documents\.Renviron
+R_LIBS=C:/R
+ 
+# Desde Power Shell de Windows 10
+Power shell
+ 
+# Creamos el archivo .Renviron y agregamos la variable R_LIBS=C:/R/R-4.0.3/library
+Add-Content c:\Users\$env:USERNAME\Documents\.Renviron "R_LIBS=C:/R"
+ 
+# Ya sólo queda reiniciar la sesión de R y probar:
+Sys.getenv("R_LIBS")
